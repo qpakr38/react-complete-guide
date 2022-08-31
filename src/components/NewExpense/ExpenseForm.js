@@ -56,6 +56,12 @@ const ExpenseForm = (props) => {
         setEnteredAmount('');
         setEnteredDate('');
     }
+    const numberKeyDownHandler = (event) => {
+      if(!(event.key>= 0  && event.key<=9)){
+          alert("숫자만 입력이 가능합니다.");
+          setEnteredAmount('');
+      }
+    }
     return (
         <form onSubmit={submitHandler}>
             <div className="new-expense__controls">
@@ -72,7 +78,8 @@ const ExpenseForm = (props) => {
                         type="number"
                         min="0.01" step='0.01'
                         value={enteredAmount}
-                        onChange={amountChangHandler}/>
+                        onChange={amountChangHandler}
+                        onKeyDown={numberKeyDownHandler}/>
                 </div>
                 <div className="new-expense__control">
                     <label>Date</label>
